@@ -1,0 +1,31 @@
+﻿@model ICollection<Forum_Marchuk.BLL.DTO.ReplyDTO>
+
+@{
+    ViewBag.Title = "Replies";
+
+}
+
+<h2>VIDPOVIDI</h2>
+
+<div class="lead">
+</div>
+<table class="table">
+    @foreach (var item in Model)
+    {
+     <tr>
+        <td>
+            <h3> @Html.DisplayFor(modelItem => item.UserPosted)</h3>
+            <blockquote>
+                <h5>@Html.DisplayFor(modelItem => item.ReplyText)</h5>
+            </blockquote>
+        </td>
+        @if (User.IsInRole("admin"))
+        {
+            <td class=" col-lg-2">
+                @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }, new { @class = "btn btn-warning " }) |
+                @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id }, new { @class = "btn btn-warning " })
+            </td>
+        }
+    </tr>
+    }
+</table>

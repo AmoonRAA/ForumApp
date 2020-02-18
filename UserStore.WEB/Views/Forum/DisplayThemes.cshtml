@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Forum_Marchuk.BLL.DTO.ThemeDTO>
+
+@{
+    ViewBag.Title = "DisplayThemes";
+}
+    
+        <h2>DisplayThemes</h2>
+        @if (User.IsInRole("admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "CreateTheme", null, new { @class = "btn btn-primary btn-lg pull-right" })
+            </p>
+        }
+        @if(User.Identity.IsAuthenticated)
+	    {
+            <div class="lead">Всього тем: @Model.Count()</div>
+	    }
+          
+        <table class="table">
+            <tr>
+                <th class=" col-lg-10 ">
+                    @Html.DisplayNameFor(model => model.ThemeTitle)
+                </th>
+              
+                @if (User.IsInRole("admin"))
+                {
+                    <th>Редагування</th>
+                }
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (User.IsInRole("admin"))
+                {
+                    <tr >
+                        <td>
+                            @Html.ActionLink(item.ThemeTitle, "DisplayQuestions",new { themeId = item.Id } , new { @style = "color:#000000", @class = "h3" })
+                            <br />
+                            <h5>@Html.DisplayFor(modelItem => item.ThemeDesc)</h5>
+                        </td>
+                        <td class=" col-lg-2">
+                            @Html.ActionLink("Edit", "EditTheme", new { id = item.Id }, new { @class = "btn btn-warning"}) |
+                            @Html.ActionLink("Delete", "DeleteTheme", new { id = item.Id }, new { @class = "btn btn-warning " })
+                        </td>
+                        <td class=" col-lg-2">
+                            @Html.ActionLink("Нове питання+", "CreateQuestion", new { themeId = item.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                <tr>
+                  <td>
+                   @Html.ActionLink(item.ThemeTitle, "DisplayQuestions", new { themeId = item.Id }, new { @style = "color:#000000", @class = "h3" })
+                   <br />
+                   <h5>@Html.DisplayFor(modelItem => item.ThemeDesc)</h5>
+                  </td>
+                  <td class=" col-lg-4">
+                   @Html.ActionLink("Нове питання+", "CreateQuestion", new { themeId = item.Id }, new { @class = "btn btn-primary" })
+                  </td>
+                </tr>
+                }
+            }
+        </table>
+    

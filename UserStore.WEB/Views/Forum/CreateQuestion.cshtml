@@ -1,0 +1,22 @@
+﻿@model Forum_Marchuk.Models.QuestionModel
+
+@{
+    ViewBag.Title = "CreateQuestion";
+}
+
+<h2>CreateQuestion</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model=>model.Title,"Питання")
+    <br />
+    @Html.EditorFor(model => model.Title)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Desc, "Короткий опис питання")
+    <br />
+    @Html.EditorFor(model => model.Desc)
+    <br />
+    <br />
+    <input type="submit" value="Добавить" />
+}

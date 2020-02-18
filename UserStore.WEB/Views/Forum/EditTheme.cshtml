@@ -1,0 +1,24 @@
+﻿@model Forum_Marchuk.BLL.DTO.ThemeDTO
+
+@{
+    ViewBag.Title = "EditTheme";
+}
+
+<h2>Редагування теми</h2>
+@using (Html.BeginForm("EditTheme", "Forum", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.ThemeTitle,"Назва теми" )
+            <br />
+            @Html.EditorFor(m => m.ThemeTitle)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ThemeDesc,"Опис теми" )
+            <br />
+            @Html.EditorFor(m => m.ThemeDesc)
+        </p>
+        <p><input type="submit" value="Отправить" /></p>
+    </fieldset>
+}

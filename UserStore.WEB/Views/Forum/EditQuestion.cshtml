@@ -1,0 +1,26 @@
+﻿@model Forum_Marchuk.BLL.DTO.QuestionDTO
+
+@{
+    ViewBag.Title = "EditQuestion";
+}
+
+<h2>Редагування питань</h2>
+
+@using (Html.BeginForm("EditQuestion", "Forum", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.QuestionTitlle, "Питання")
+            <br />
+            @Html.EditorFor(m => m.QuestionTitlle)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.QuestionDesc, "Опис питання")
+            <br />
+            @Html.EditorFor(m => m.QuestionDesc)
+        </p>
+        <p><input type="submit" value="Отправить" /></p>
+    </fieldset>
+}
+

@@ -1,0 +1,22 @@
+﻿@model Forum_Marchuk.Models.ThemeModel
+
+@{
+    ViewBag.Title = "CreateTheme";
+}
+
+<h2>CreateTheme</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.ThemeTitle, "Назва теми ")
+    <br />
+    @Html.EditorFor(model => model.ThemeTitle)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.ThemeDesc, "Короткий опис теми")
+    <br />
+    @Html.EditorFor(model => model.ThemeDesc)
+    <br />
+    <br />
+    <input type="submit" value="Добавить" />
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Forum_Marchuk.BLL.DTO.QuestionDTO>
+
+@{
+    ViewBag.Title = "DisplayQuestions";
+}
+
+<h2>DisplayQuestions</h2>
+
+
+<div class="lead">
+</div>
+<table class="table">
+    @foreach (var item in Model)
+    {
+            if (User.IsInRole("admin"))
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.QuestionTitlle, "DisplayReplies", new { questionId = item.Id }, new { @style = "color:#000000", @class = "h3" })
+                        <br />
+                        <h5>@Html.DisplayFor(modelItem => item.QuestionDesc)</h5>
+                        <h5>@Html.DisplayFor(modelItem => item.PostedUser)</h5>
+                    </td>
+                    <td class="col-lg-2" >
+                       <h4> @Html.DisplayFor(modelItem => item.DatePosted)</h4>
+                    </td>
+                    <td class=" col-lg-2">
+                        @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }, new { @class = "btn btn-warning " }) |
+                        @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id }, new { @class = "btn btn-warning " })
+                    </td>  
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.QuestionTitlle, "DisplayReplies", new { questionId = item.Id }, new { @style = "color:#000000", @class = "h3" })
+                        <br />
+                        <h5>@Html.DisplayFor(modelItem => item.QuestionDesc)</h5>
+                        <br />
+                        <h5>@Html.DisplayFor(modelItem => item.PostedUser)</h5>
+                    </td>
+                    @*<td class=" col-lg-4">
+                        @Html.ActionLink("Нове питання+", "CreateQuestion", new { themeId = item.Id }, new { @class = "btn btn-primary" })
+                    </td>*@
+                </tr>
+            }
+      }
+    
+</table>
+
+
